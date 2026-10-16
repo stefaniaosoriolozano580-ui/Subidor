@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Subir archivos</title>
+    <script src="https://unpkg.com/htmx.org@2"></script>
+    <style>
+        body { font-family: sans-serif; max-width: 40rem; margin: 2rem auto; }
+        form { display: flex; gap: .5rem; }
+        ul { padding-left: 1rem; }
+    </style>
+</head>
+<body>
+    <h1>Subir archivos</h1>
+
+    <!-- htmx envía el formulario a /subir y reemplaza solo #archivos con la respuesta -->
+    <form hx-post="/subir"
+          hx-target="#archivos"
+          hx-swap="innerHTML"
+          hx-encoding="multipart/form-data">
+        <input type="file" name="archivo" required>
+        <button type="submit">Subir</button>
+    </form>
+
+    <h2>En el servidor</h2>
+    <div id="archivos">{% include "_archivos.html" %}</div>
+</body>
+</html>
